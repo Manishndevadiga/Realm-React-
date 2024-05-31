@@ -67,7 +67,7 @@ export function LoginPage() {
         src={logo}
       />
       <h1>
-      Atlas Device SDK for Web
+        Atlas Device SDK for Web
       </h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input

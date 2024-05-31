@@ -21,15 +21,18 @@ import { AppProvider } from '@realm/react';
 
 import { AuthenticatedApp } from './AuthenticatedApp';
 import { ErrorPage } from './pages/ErrorPage';
-import { LoginPage } from './pages/LoginPage';
+// import { LoginPage } from './pages/LoginPage';
+import ApiLogin from "./pages/ApiLogin";
 import { TaskPage } from './pages/TaskPage';
+import AddUsers from "./pages/AddUsers"
 import config from './atlas-app-services/config.json';
 import styles from './styles/App.module.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LoginPage />,
+    // element: <LoginPage />,
+    element: <ApiLogin />,
     errorElement: <ErrorPage />,
   },
   {
@@ -38,6 +41,15 @@ const router = createBrowserRouter([
       {
         path: 'tasks',
         element: <TaskPage />
+      }
+    ]
+  },
+  {
+    element: <AuthenticatedApp />,
+    children: [
+      {
+        path: 'addUsers',
+        element: <AddUsers />
       }
     ]
   }

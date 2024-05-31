@@ -20,6 +20,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { RealmProvider, UserProvider } from '@realm/react';
 
 import { Task } from './models/Task';
+import { Users } from './models/Users';
 import { PageLayout } from './components/PageLayout';
 
 /**
@@ -36,13 +37,14 @@ export function AuthenticatedApp() {
     // configuration; therefore, you don't have to explicitly provide it here.
     <UserProvider fallback={<Navigate to='/' />}>
       <RealmProvider
-        schema={[Task]}
+        schema={[Task, Users]}
         sync={{
           flexible: true,
           // To sync data to the device, we need to subscribe to our tasks.
           initialSubscriptions: {
             update: ((mutableSubs, realm) => {
-              mutableSubs.add(realm.objects(Task), { name: 'allTasks' });
+              mutableSubs.add(realm.objects(Users), { name: 'allTasks' });
+              // mutableSubs.add(realm.objects(Task), { name: 'allTasks' });
             }),
           },
         }}
